@@ -41,3 +41,18 @@ $objective
 plot(x = c(0:10000),y = sapply(X = c(0:10000),FUN = f),)#Fluctuations!--> Hard to optimize. 
 x <- seq(from = 8,to = 10,by = 0.01)
 plot(x,f(x))
+
+#Integrating a function.
+sinf<-function(x){
+  yval<-x*sin(x)
+  return(yval)
+}
+
+integrate(f = sinf,lower = (-7)*10^5,upper = (7)*10^5,subdivisions = 10^7)
+#1356376 with absolute error < 166
+
+system.time(
+integrate(f = sinf,lower = (-7)*10^5,upper = (7)*10^5,subdivisions = 10^7)
+)
+# user  system elapsed 
+# 8.023   0.058   8.112 
