@@ -149,3 +149,5 @@ qplot(x = carat,y = price, data = diamonds)
 str(diamonds$color)
 #Ord.factor w/ 7 levels "D"<"E"<"F"<"G"<..: 2 2 2 6 7 7 6 5 2 5 ...
 qplot(x = carat,y = price, data = diamonds,color = color)
+#Add smoother.
+qplot(x = carat,y = price, data = diamonds,color = color, geom = c("point","smooth"))
