@@ -151,3 +151,7 @@ str(diamonds$color)
 qplot(x = carat,y = price, data = diamonds,color = color)
 #Add smoother.
 qplot(x = carat,y = price, data = diamonds,color = color, geom = c("point","smooth"))
+
+#Change legend title.
+dp<-qplot(x = carat,y = price, data = diamonds,color = color, geom = c("point","smooth"))
+dp + scale_colour_brewer(name = "New legends")
