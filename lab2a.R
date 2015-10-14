@@ -155,3 +155,6 @@ qplot(x = carat,y = price, data = diamonds,color = color, geom = c("point","smoo
 #Change legend title.
 dp<-qplot(x = carat,y = price, data = diamonds,color = color, geom = c("point","smooth"))
 dp + scale_colour_brewer(name = "New legends")
+
+#Create a boxplot.
+qplot(x = carat ,y = price,data = diamonds,color=color,geom="boxplot",facets = ~color)
