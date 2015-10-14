@@ -134,3 +134,18 @@ qplot(displ, hwy, data =mpg, geom=c("point","smooth"),method="lm",color=drv)
 #Modify plots.
 gr <- qplot(displ, hwy, data =mpg, geom=c("point","smooth"),method="lm",color=drv)
 gr + theme(panel.background = element_rect(colour = "red"))
+
+#Exercise
+#Load data
+str(diamonds)
+str(diamonds$carat)
+#num [1:53940] 0.23 0.21 0.23 0.29 0.31 0.24 0.24 0.26 0.22 0.23 ...
+str(diamonds$price)
+#int [1:53940] 326 326 327 334 335 336 336 337 337 338 ...
+
+#Plot carat vs price.Price goes up with carat.
+qplot(x = carat,y = price, data = diamonds)
+#Plot differences between colors in colors!More or less different colors for different carats.
+str(diamonds$color)
+#Ord.factor w/ 7 levels "D"<"E"<"F"<"G"<..: 2 2 2 6 7 7 6 5 2 5 ...
+qplot(x = carat,y = price, data = diamonds,color = color)
