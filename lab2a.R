@@ -130,3 +130,7 @@ qplot(x = displ,y = hwy, data = mpg,color=drv)
 qplot(x = displ,y = hwy, data = mpg,geom=c("point","smooth"))
 qplot(displ, hwy, data =mpg, geom=c("point","smooth"),method="lm")
 qplot(displ, hwy, data =mpg, geom=c("point","smooth"),method="lm",color=drv)
+
+#Modify plots.
+gr <- qplot(displ, hwy, data =mpg, geom=c("point","smooth"),method="lm",color=drv)
+gr + theme(panel.background = element_rect(colour = "red"))
