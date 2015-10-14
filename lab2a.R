@@ -120,3 +120,13 @@ system.time(fib2(28))
 system.time(fib3(28))
 #user  system elapsed 
 #0       0       0
+
+#Domain-specific languages
+install.packages("ggplot2")
+library(ggplot2)
+str(mpg)
+qplot(x = displ,y = hwy, data = mpg)
+qplot(x = displ,y = hwy, data = mpg,color=drv)
+qplot(x = displ,y = hwy, data = mpg,geom=c("point","smooth"))
+qplot(displ, hwy, data =mpg, geom=c("point","smooth"),method="lm")
+qplot(displ, hwy, data =mpg, geom=c("point","smooth"),method="lm",color=drv)
