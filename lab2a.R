@@ -84,3 +84,39 @@ system.time(
 #This is an improvement.
 #user  system elapsed 
 #0.004   0.002   1.246
+
+#Memoise
+install.packages("memoise")
+library(memoise)
+fib <- function(n) {
+  if (n < 2) return(1)
+  fib(n - 2) + fib(n - 1)
+}
+
+fib2 <- memoise(function(n) {
+  if (n < 2) return(1)
+  fib2(n - 2) + fib2(n - 1)
+})
+
+fib3 <- memoise(fib)
+
+system.time(fib(28))
+#user  system elapsed 
+#0.798   0.007   0.810
+system.time(fib2(28))
+#user  system elapsed 
+#0.004   0.001   0.005
+system.time(fib3(28))
+#user  system elapsed 
+#0.793   0.007   0.807
+
+###Second round.
+system.time(fib(28))
+#user  system elapsed 
+#0.735   0.003   0.740
+system.time(fib2(28))
+#user  system elapsed 
+#0       0       0 
+system.time(fib3(28))
+#user  system elapsed 
+#0       0       0
