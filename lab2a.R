@@ -52,7 +52,35 @@ integrate(f = sinf,lower = (-7)*10^5,upper = (7)*10^5,subdivisions = 10^7)
 #1356376 with absolute error < 166
 
 system.time(
-integrate(f = sinf,lower = (-7)*10^5,upper = (7)*10^5,subdivisions = 10^7)
+  integrate(f = sinf,lower = (-7)*10^5,upper = (7)*10^5,subdivisions = 10^7)
 )
-# user  system elapsed 
+# user  system elapsed
 # 8.023   0.058   8.112 
+
+#parallel
+library(parallel)
+sinf<-function(x){
+  yval<-x*sin(x)
+  return(yval)
+}
+start<-function(x){seq(from = (-7)*10^5,to = (7)*10^5,length.out = 5)[1:4][x]}
+end<-function(x){seq(from = (-7)*10^5,to = (7)*10^5,length.out = 5)[2:5][x]}
+cl<-makePSOCKcluster(4)
+clusterExport(cl,"sinf")
+clusterExport(cl,"start")
+clusterExport(cl,"end")
+
+sum(unlist(parLapply(cl,1:4,
+  function(x){ integrate(f = sinf,lower = start(x),upper = end(x),subdivisions = 10^7)$value}
+)))
+#[1] 1356376
+
+system.time(
+  sum(unlist(parLapply(cl,1:4,
+  function(x){ integrate(f = sinf,lower = start(x),upper = end(x),subdivisions = 10^7)$value}
+  )))
+)
+
+#This is an improvement.
+#user  system elapsed 
+#0.004   0.002   1.246
